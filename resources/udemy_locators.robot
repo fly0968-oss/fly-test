@@ -21,8 +21,13 @@
 # ------------------------------------------------------------------------
 
 # 首頁搜尋輸入框
-# xpath 語法解釋：找一個 <input> 標籤，且它的 placeholder 屬性等於「搜尋任何事物」
-${SEARCH_BOX}          xpath://input[@placeholder='搜尋任何事物']
+# 【重要發現】GitHub Actions 雲端伺服器的 IP 位於海外資料中心，
+# Udemy 會根據造訪者 IP 判斷地區並自動切換語言，導致雲端環境看到的是「英文版」頁面
+# （placeholder 顯示 "Search for anything"），而不是你本機台灣網路看到的「中文版」
+# （placeholder 顯示 "搜尋任何事物"）。這正是雲端排程一直失敗、本機卻正常的根本原因。
+#
+# 用 or 條件同時比對中英文兩種版本的 placeholder 文字，不管哪個地區、哪個語言版本都能抓到。
+${SEARCH_BOX}          xpath://input[@placeholder='搜尋任何事物' or @placeholder='Search for anything']
 
 # 導覽列「探索」連結
 # contains(.,'探索') 的意思：這個元素「本身或裡面任何子層級」的文字只要包含「探索」就算符合
