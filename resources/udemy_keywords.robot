@@ -95,6 +95,12 @@ Resource   udemy_locators.robot
     # [Arguments] 讓這個關鍵字可以「接收參數」，呼叫時可以傳入不同的關鍵字字串
     # 例如：搜尋關鍵字    Python  或  搜尋關鍵字    JavaScript，同一段邏輯重複使用
     [Arguments]    ${keyword}
+    # 【新增修正】ElementNotInteractableException 代表元素「存在」但「無法互動」，
+    # 常見原因是元素還沒真正可視化、或被其他區塊（例如頁面上方的促銷橫幅）暫時遮住。
+    # 這裡先明確等待元素變成「可見」狀態（不只是存在於 HTML），
+    # 再主動捲動到該元素的位置，確保它不會被其他元素擋住，兩個步驟疊加，最大化互動成功率。
+    Wait Until Element Is Visible    ${SEARCH_BOX}    timeout=15s
+    Scroll Element Into View    ${SEARCH_BOX}
     Input Text    ${SEARCH_BOX}    ${keyword}
     # 模擬按下 Enter 鍵，送出搜尋（等同你在搜尋框打完字後按下 Enter）
     Press Keys    ${SEARCH_BOX}    RETURN
