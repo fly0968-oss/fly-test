@@ -83,7 +83,11 @@ Resource   udemy_locators.robot
     開啟瀏覽器並前往    https://www.udemy.com/
     # 等待搜尋框出現，代表頁面主要內容已經載入完成，才能繼續下一步操作
     # 這裡直接引用 locators 檔案裡定義好的 ${SEARCH_BOX} 變數
-    Wait Until Page Contains Element    ${SEARCH_BOX}    timeout=15s
+    #
+    # 【調整】timeout 從 15 秒拉長到 30 秒。
+    # 首頁內容通常比單一課程頁面複雜（更多區塊、圖片、可能有 Cookie 同意橫幅等），
+    # 無頭模式下載入這些額外內容可能需要更久時間，之前 15 秒不夠導致抓不到搜尋框。
+    Wait Until Page Contains Element    ${SEARCH_BOX}    timeout=30s
 
 
 搜尋關鍵字
