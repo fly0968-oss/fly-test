@@ -58,9 +58,18 @@ Resource   udemy_locators.robot
         # --disable-gpu：雲端伺服器通常沒有顯示卡，關閉 GPU 加速避免相容性問題
         # --no-sandbox：GitHub Actions 容器環境的權限限制，加這個參數避免啟動失敗
         # --window-size=1920,1080：無頭模式沒有真實視窗大小，手動指定，避免某些版面判斷失準
+        #
+        # 【關鍵新增】--user-agent=...
+        # 無頭 Chrome 預設的瀏覽器識別字串（User-Agent）裡會帶有「HeadlessChrome」這個字樣，
+        # 這次失敗的原因很可能就是 Udemy 偵測到這個特徵，判斷為自動化程式，
+        # 沒有提供正常頁面內容（h1 抓到的是 'www.udemy.com' 這種異常內容，不是真正的課程標題）。
+        # 這裡手動指定一個「看起來像一般 Windows Chrome 瀏覽器」的 User-Agent 字串，降低被判斷為機器人的機率。
         ${options}=    Set Variable
-        ...    add_argument("--headless=new");add_argument("--disable-gpu");add_argument("--no-sandbox");add_argument("--window-size=1920,1080")
+        ...    add_argument("--headless=new");add_argument("--disable-gpu");add_argument("--no-sandbox");add_argument("--window-size=1920,1080");add_argument("--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36")
         Open Browser    ${url}    chrome    options=${options}
+        # 額外給頁面一點緩衝時間，讓 JavaScript 內容有機會完整載入，
+        # 無頭模式有時候載入時機會比有畫面模式稍微不穩定
+        Sleep    2s
     ELSE
         # 本機環境：維持原本的做法，開一個看得到的視窗，方便你自己盯著畫面除錯
         Open Browser    ${url}    chrome

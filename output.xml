@@ -1,192 +1,202 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 7.4.2 (Python 3.14.2 on win32)" generated="2026-09-19T21:15:35.279348" rpa="false" schemaversion="5">
+<robot generator="Robot 7.4.2 (Python 3.14.2 on win32)" generated="2026-09-19T22:58:40.987579" rpa="false" schemaversion="5">
 <suite id="s1" name="Udemy Tests" source="C:\Users\FLY-PC\OneDrive\桌面\ROBOT\tests\udemy_tests.robot">
 <test id="s1-t1" name="首頁搜尋功能測試" line="50">
 <kw name="開啟Udemy首頁" owner="udemy_keywords">
 <kw name="開啟瀏覽器並前往" owner="udemy_keywords">
 <kw name="Get Environment Variable" owner="OperatingSystem">
-<msg time="2026-09-19T21:15:35.475499" level="INFO">${is_ci} = false</msg>
+<msg time="2026-09-19T22:58:41.183580" level="INFO">${is_ci} = false</msg>
 <var>${is_ci}</var>
 <arg>CI</arg>
 <arg>default=false</arg>
 <doc>Returns the value of an environment variable with the given name.</doc>
-<status status="PASS" start="2026-09-19T21:15:35.475255" elapsed="0.000284"/>
+<status status="PASS" start="2026-09-19T22:58:41.183372" elapsed="0.000240"/>
 </kw>
 <if>
 <branch type="IF" condition="'${is_ci}' == 'true'">
 <kw name="Set Variable" owner="BuiltIn">
 <var>${options}</var>
-<arg>add_argument("--headless=new");add_argument("--disable-gpu");add_argument("--no-sandbox");add_argument("--window-size=1920,1080")</arg>
+<arg>add_argument("--headless=new");add_argument("--disable-gpu");add_argument("--no-sandbox");add_argument("--window-size=1920,1080");add_argument("--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36")</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<status status="NOT RUN" start="2026-09-19T21:15:35.475822" elapsed="0.000025"/>
+<status status="NOT RUN" start="2026-09-19T22:58:41.183876" elapsed="0.000023"/>
 </kw>
 <kw name="Open Browser" owner="SeleniumLibrary">
 <arg>${url}</arg>
 <arg>chrome</arg>
 <arg>options=${options}</arg>
 <doc>Opens a new browser instance to the optional ``url``.</doc>
-<status status="NOT RUN" start="2026-09-19T21:15:35.475942" elapsed="0.000020"/>
+<status status="NOT RUN" start="2026-09-19T22:58:41.183995" elapsed="0.000020"/>
 </kw>
-<status status="NOT RUN" start="2026-09-19T21:15:35.475645" elapsed="0.000349"/>
+<kw name="Sleep" owner="BuiltIn">
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" start="2026-09-19T22:58:41.184080" elapsed="0.000018"/>
+</kw>
+<status status="NOT RUN" start="2026-09-19T22:58:41.183717" elapsed="0.000408"/>
 </branch>
 <branch type="ELSE">
 <kw name="Open Browser" owner="SeleniumLibrary">
-<msg time="2026-09-19T21:15:35.476246" level="INFO">Opening browser 'chrome' to base url 'https://www.udemy.com/'.</msg>
+<msg time="2026-09-19T22:58:41.184385" level="INFO">Opening browser 'chrome' to base url 'https://www.udemy.com/'.</msg>
 <arg>${url}</arg>
 <arg>chrome</arg>
 <doc>Opens a new browser instance to the optional ``url``.</doc>
-<status status="PASS" start="2026-09-19T21:15:35.476103" elapsed="1.572402"/>
+<status status="PASS" start="2026-09-19T22:58:41.184234" elapsed="3.431435"/>
 </kw>
 <kw name="Maximize Browser Window" owner="SeleniumLibrary">
 <doc>Maximizes current browser window.</doc>
-<status status="PASS" start="2026-09-19T21:15:37.048718" elapsed="0.061418"/>
+<status status="PASS" start="2026-09-19T22:58:44.615956" elapsed="0.087965"/>
 </kw>
-<status status="PASS" start="2026-09-19T21:15:35.476027" elapsed="1.634237"/>
+<status status="PASS" start="2026-09-19T22:58:41.184158" elapsed="3.520170"/>
 </branch>
-<status status="PASS" start="2026-09-19T21:15:35.475623" elapsed="1.634707"/>
+<status status="PASS" start="2026-09-19T22:58:41.183695" elapsed="3.520716"/>
 </if>
 <arg>https://www.udemy.com/</arg>
 <doc>統一的開瀏覽器邏輯，自動判斷「本機執行」還是「CI 雲端執行」，切換有畫面/無畫面模式</doc>
-<status status="PASS" start="2026-09-19T21:15:35.474617" elapsed="1.635814"/>
+<status status="PASS" start="2026-09-19T22:58:41.182732" elapsed="3.521824"/>
 </kw>
 <kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
 <arg>${SEARCH_BOX}</arg>
 <arg>timeout=15s</arg>
 <doc>Waits until the element ``locator`` appears on the current page.</doc>
-<status status="PASS" start="2026-09-19T21:15:37.110641" elapsed="0.038057"/>
+<status status="PASS" start="2026-09-19T22:58:44.704781" elapsed="0.030018"/>
 </kw>
 <doc>開啟瀏覽器、導航到 Udemy 首頁，並確認頁面已完整載入（等搜尋框出現）</doc>
-<status status="PASS" start="2026-09-19T21:15:35.474189" elapsed="1.674638"/>
+<status status="PASS" start="2026-09-19T22:58:41.182297" elapsed="3.552636"/>
 </kw>
 <kw name="搜尋關鍵字" owner="udemy_keywords">
 <kw name="Input Text" owner="SeleniumLibrary">
-<msg time="2026-09-19T21:15:37.149835" level="INFO">Typing text 'Python' into text field 'xpath://input[@placeholder='搜尋任何事物']'.</msg>
+<msg time="2026-09-19T22:58:44.735946" level="INFO">Typing text 'Python' into text field 'xpath://input[@placeholder='搜尋任何事物']'.</msg>
 <arg>${SEARCH_BOX}</arg>
 <arg>${keyword}</arg>
 <doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<status status="PASS" start="2026-09-19T21:15:37.149576" elapsed="0.194216"/>
+<status status="PASS" start="2026-09-19T22:58:44.735682" elapsed="0.133057"/>
 </kw>
 <kw name="Press Keys" owner="SeleniumLibrary">
-<msg time="2026-09-19T21:15:37.344240" level="INFO">Sending key(s) ('RETURN',) to xpath://input[@placeholder='搜尋任何事物'] element.</msg>
-<msg time="2026-09-19T21:15:37.613871" level="INFO">Pressing special key RETURN to element.</msg>
-<msg time="2026-09-19T21:15:37.613957" level="INFO">Releasing special key RETURN.</msg>
+<msg time="2026-09-19T22:58:44.869333" level="INFO">Sending key(s) ('RETURN',) to xpath://input[@placeholder='搜尋任何事物'] element.</msg>
+<msg time="2026-09-19T22:58:45.148010" level="INFO">Pressing special key RETURN to element.</msg>
+<msg time="2026-09-19T22:58:45.148101" level="INFO">Releasing special key RETURN.</msg>
 <arg>${SEARCH_BOX}</arg>
 <arg>RETURN</arg>
 <doc>Simulates the user pressing key(s) to an element or on the active browser.</doc>
-<status status="PASS" start="2026-09-19T21:15:37.343973" elapsed="0.275331"/>
+<status status="PASS" start="2026-09-19T22:58:44.868951" elapsed="0.412022"/>
 </kw>
 <kw name="Sleep" owner="BuiltIn">
-<msg time="2026-09-19T21:15:40.620098" level="INFO">Slept 3 seconds.</msg>
+<msg time="2026-09-19T22:58:48.281970" level="INFO">Slept 3 seconds.</msg>
 <arg>3s</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<status status="PASS" start="2026-09-19T21:15:37.619470" elapsed="3.000745"/>
+<status status="PASS" start="2026-09-19T22:58:45.281243" elapsed="3.000844"/>
 </kw>
 <arg>Python</arg>
 <doc>在搜尋框輸入指定關鍵字並送出搜尋</doc>
-<status status="PASS" start="2026-09-19T21:15:37.149177" elapsed="3.471137"/>
+<status status="PASS" start="2026-09-19T22:58:44.735368" elapsed="3.546817"/>
 </kw>
 <kw name="Capture Page Screenshot" owner="SeleniumLibrary">
-<msg time="2026-09-19T21:15:40.790095" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="screenshots/search_result.png"&gt;&lt;img src="screenshots/search_result.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg time="2026-09-19T22:58:48.327166" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="screenshots/search_result.png"&gt;&lt;img src="screenshots/search_result.png" width="800px"&gt;&lt;/a&gt;</msg>
 <arg>${SCREENSHOT_DIR}/search_result.png</arg>
 <doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
-<status status="PASS" start="2026-09-19T21:15:40.620607" elapsed="0.169608"/>
+<status status="PASS" start="2026-09-19T22:58:48.282479" elapsed="0.044819"/>
 </kw>
 <kw name="Close Browser" owner="SeleniumLibrary">
 <doc>Closes the current browser.</doc>
-<status status="PASS" start="2026-09-19T21:15:40.790542" elapsed="2.119670"/>
+<status status="PASS" start="2026-09-19T22:58:48.327606" elapsed="2.152674"/>
 </kw>
 <doc>驗證使用者可以在首頁搜尋框輸入關鍵字並成功送出搜尋</doc>
-<status status="PASS" start="2026-09-19T21:15:35.472719" elapsed="7.437812"/>
+<status status="PASS" start="2026-09-19T22:58:41.180597" elapsed="9.299977"/>
 </test>
 <test id="s1-t2" name="課程頁面內容驗證測試" line="71">
 <kw name="開啟瀏覽器並前往" owner="udemy_keywords">
 <kw name="Get Environment Variable" owner="OperatingSystem">
-<msg time="2026-09-19T21:15:42.913126" level="INFO">${is_ci} = false</msg>
+<msg time="2026-09-19T22:58:50.483470" level="INFO">${is_ci} = false</msg>
 <var>${is_ci}</var>
 <arg>CI</arg>
 <arg>default=false</arg>
 <doc>Returns the value of an environment variable with the given name.</doc>
-<status status="PASS" start="2026-09-19T21:15:42.912949" elapsed="0.000202"/>
+<status status="PASS" start="2026-09-19T22:58:50.483292" elapsed="0.000205"/>
 </kw>
 <if>
 <branch type="IF" condition="'${is_ci}' == 'true'">
 <kw name="Set Variable" owner="BuiltIn">
 <var>${options}</var>
-<arg>add_argument("--headless=new");add_argument("--disable-gpu");add_argument("--no-sandbox");add_argument("--window-size=1920,1080")</arg>
+<arg>add_argument("--headless=new");add_argument("--disable-gpu");add_argument("--no-sandbox");add_argument("--window-size=1920,1080");add_argument("--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36")</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<status status="NOT RUN" start="2026-09-19T21:15:42.913389" elapsed="0.000020"/>
+<status status="NOT RUN" start="2026-09-19T22:58:50.483736" elapsed="0.000021"/>
 </kw>
 <kw name="Open Browser" owner="SeleniumLibrary">
 <arg>${url}</arg>
 <arg>chrome</arg>
 <arg>options=${options}</arg>
 <doc>Opens a new browser instance to the optional ``url``.</doc>
-<status status="NOT RUN" start="2026-09-19T21:15:42.913499" elapsed="0.000019"/>
+<status status="NOT RUN" start="2026-09-19T22:58:50.483846" elapsed="0.000020"/>
 </kw>
-<status status="NOT RUN" start="2026-09-19T21:15:42.913235" elapsed="0.000313"/>
+<kw name="Sleep" owner="BuiltIn">
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" start="2026-09-19T22:58:50.483927" elapsed="0.000017"/>
+</kw>
+<status status="NOT RUN" start="2026-09-19T22:58:50.483578" elapsed="0.000391"/>
 </branch>
 <branch type="ELSE">
 <kw name="Open Browser" owner="SeleniumLibrary">
-<msg time="2026-09-19T21:15:42.913798" level="INFO">Opening browser 'chrome' to base url 'https://www.udemy.com/course/python-master/?couponCode=KEEPLEARNING'.</msg>
+<msg time="2026-09-19T22:58:50.484203" level="INFO">Opening browser 'chrome' to base url 'https://www.udemy.com/course/python-master/?couponCode=KEEPLEARNING'.</msg>
 <arg>${url}</arg>
 <arg>chrome</arg>
 <doc>Opens a new browser instance to the optional ``url``.</doc>
-<status status="PASS" start="2026-09-19T21:15:42.913664" elapsed="2.137749"/>
+<status status="PASS" start="2026-09-19T22:58:50.484069" elapsed="2.231939"/>
 </kw>
 <kw name="Maximize Browser Window" owner="SeleniumLibrary">
 <doc>Maximizes current browser window.</doc>
-<status status="PASS" start="2026-09-19T21:15:45.051588" elapsed="0.046937"/>
+<status status="PASS" start="2026-09-19T22:58:52.716246" elapsed="0.045194"/>
 </kw>
-<status status="PASS" start="2026-09-19T21:15:42.913576" elapsed="2.185066"/>
+<status status="PASS" start="2026-09-19T22:58:50.484000" elapsed="2.277521"/>
 </branch>
-<status status="PASS" start="2026-09-19T21:15:42.913215" elapsed="2.185497"/>
+<status status="PASS" start="2026-09-19T22:58:50.483557" elapsed="2.278004"/>
 </if>
 <arg>https://www.udemy.com/course/python-master/?couponCode=KEEPLEARNING</arg>
 <doc>統一的開瀏覽器邏輯，自動判斷「本機執行」還是「CI 雲端執行」，切換有畫面/無畫面模式</doc>
-<status status="PASS" start="2026-09-19T21:15:42.912645" elapsed="2.186160"/>
+<status status="PASS" start="2026-09-19T22:58:50.482978" elapsed="2.278671"/>
 </kw>
 <kw name="驗證課程標題包含" owner="udemy_keywords">
 <kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
 <arg>${COURSE_TITLE}</arg>
 <arg>timeout=15s</arg>
 <doc>Waits until the element ``locator`` appears on the current page.</doc>
-<status status="PASS" start="2026-09-19T21:15:45.099574" elapsed="0.045545"/>
+<status status="PASS" start="2026-09-19T22:58:52.762421" elapsed="0.051490"/>
 </kw>
 <kw name="Element Should Contain" owner="SeleniumLibrary">
-<msg time="2026-09-19T21:15:45.158539" level="INFO">Element 'xpath://h1' contains text 'Python'.</msg>
+<msg time="2026-09-19T22:58:52.846877" level="INFO">Element 'xpath://h1' contains text 'Python'.</msg>
 <arg>${COURSE_TITLE}</arg>
 <arg>${expected_text}</arg>
 <doc>Verifies that element ``locator`` contains text ``expected``.</doc>
-<status status="PASS" start="2026-09-19T21:15:45.145333" elapsed="0.013298"/>
+<status status="PASS" start="2026-09-19T22:58:52.814103" elapsed="0.032864"/>
 </kw>
 <arg>Python</arg>
 <doc>驗證課程頁面的標題（h1）是否包含指定文字，用於確認頁面內容正確</doc>
-<status status="PASS" start="2026-09-19T21:15:45.099240" elapsed="0.059480"/>
+<status status="PASS" start="2026-09-19T22:58:52.762038" elapsed="0.085015"/>
 </kw>
 <kw name="驗證頁面有價格資訊" owner="udemy_keywords">
 <kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
 <arg>${PRICE_INFO}</arg>
 <arg>timeout=30s</arg>
 <doc>Waits until the element ``locator`` appears on the current page.</doc>
-<status status="PASS" start="2026-09-19T21:15:45.159297" elapsed="0.030277"/>
+<status status="PASS" start="2026-09-19T22:58:52.847672" elapsed="0.016778"/>
 </kw>
 <doc>等待頁面上出現含有 $ 符號的文字，用最寬鬆的方式確認價格資訊有顯示出來</doc>
-<status status="PASS" start="2026-09-19T21:15:45.159053" elapsed="0.030632"/>
+<status status="PASS" start="2026-09-19T22:58:52.847361" elapsed="0.017222"/>
 </kw>
 <kw name="Capture Page Screenshot" owner="SeleniumLibrary">
-<msg time="2026-09-19T21:15:45.318234" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="screenshots/course_detail.png"&gt;&lt;img src="screenshots/course_detail.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg time="2026-09-19T22:58:52.959124" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="screenshots/course_detail.png"&gt;&lt;img src="screenshots/course_detail.png" width="800px"&gt;&lt;/a&gt;</msg>
 <arg>${SCREENSHOT_DIR}/course_detail.png</arg>
 <doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
-<status status="PASS" start="2026-09-19T21:15:45.189978" elapsed="0.128354"/>
+<status status="PASS" start="2026-09-19T22:58:52.864850" elapsed="0.094394"/>
 </kw>
 <kw name="Close Browser" owner="SeleniumLibrary">
 <doc>Closes the current browser.</doc>
-<status status="PASS" start="2026-09-19T21:15:45.318643" elapsed="2.113304"/>
+<status status="PASS" start="2026-09-19T22:58:52.959596" elapsed="2.124505"/>
 </kw>
 <doc>進入指定課程頁面，驗證標題文字正確，並確認頁面上有正常顯示價格資訊</doc>
-<status status="PASS" start="2026-09-19T21:15:42.911024" elapsed="4.521314"/>
+<status status="PASS" start="2026-09-19T22:58:50.481078" elapsed="4.603339"/>
 </test>
-<status status="PASS" start="2026-09-19T21:15:35.280823" elapsed="12.152178"/>
+<status status="PASS" start="2026-09-19T22:58:40.988777" elapsed="14.096256"/>
 </suite>
 <statistics>
 <total>
